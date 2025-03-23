@@ -17,7 +17,7 @@ This is a completion of the Forage Electronic Arts software engineering job simu
 * Task 3: creating Header C++ file of Tasks 1 and 2
 * Task 4: modifying a file to bug fix it with improved data structure 
 * Completed by 3/23/2025 by VictoriaRaven
-* Time to complete all tasks (3/22/2025-3/23/2025) about a day or 24 hours to complete alongside with UMGC classes.
+* Time to complete all tasks (3/22/2025-3/23/2025) about 8 hours to complete alongside with UMGC classes, certificates, or other simulations.
 
 ### What is on resume/linkedin:
 Electronic Arts Software Engineering virtual experience program on Forage - March 2025
