@@ -4,8 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+using namespace std;
 
-// Forward Declarations
+// Forward declarations for class relationships
 class SocialMediaAccount;
 class Follower;
 class FanInteraction;
@@ -32,21 +33,27 @@ private:
     std::vector<Game*> games; // Many-to-many relationship
 
 public:
-    Athlete(std::string name, std::string position, std::vector<std::string> athleticStats);
+    Athlete(std::string name, std::string position, std::vector<std::string> athleticStats) {
+        this->name = name;
+        this->position = position;
+        this->athleticStats = athleticStats;
+        reputation = nullptr;
+        socialMediaAccount = nullptr;
+    }
 
-    // Methods (stubs)
     void updateReputation();
     void createContent();
     void engageWithFollowers();
     void adaptToWeather(WeatherEffect* weatherEffect);
 
-    // Getters and Setters
-    void setReputation(Reputation* rep);
-    void setSocialMediaAccount(SocialMediaAccount* account);
-    void addFanInteraction(FanInteraction* interaction);
-    void addGame(Game* game);
-    std::string getName() const;
-    std::string getPosition() const;
+    // Setters and Getters
+    void setReputation(Reputation* rep) { reputation = rep; }
+    void setSocialMediaAccount(SocialMediaAccount* account) { socialMediaAccount = account; }
+    void addFanInteraction(FanInteraction* interaction) { fanInteractions.push_back(interaction); }
+    void addGame(Game* game) { games.push_back(game); }
+
+    std::string getName() const { return name; }
+    std::string getPosition() const { return position; }
 };
 
 // Class representing SocialMediaAccount
@@ -59,20 +66,23 @@ private:
     std::vector<Sponsorship*> sponsorships; // 1-to-many with Sponsorship
 
 public:
-    SocialMediaAccount(double engagementRate, std::string accountType);
+    SocialMediaAccount(double engagementRate, std::string accountType) {
+        this->engagementRate = engagementRate;
+        this->accountType = accountType;
+    }
 
-    // Methods (stubs)
     void postContent(Post* post);
     void gainFollowers(int numFollowers);
     void loseFollowers(int numFollowers);
     void updateEngagement();
 
-    // Getters and Setters
-    void addPost(Post* post);
-    void addSponsorship(Sponsorship* sponsorship);
-    void addFollower(Follower* follower);
-    double getEngagementRate() const;
-    std::string getAccountType() const;
+    // Setters and Getters
+    void addPost(Post* post) { posts.push_back(post); }
+    void addSponsorship(Sponsorship* sponsorship) { sponsorships.push_back(sponsorship); }
+    void addFollower(Follower* follower) { followers.push_back(follower); }
+
+    double getEngagementRate() const { return engagementRate; }
+    std::string getAccountType() const { return accountType; }
 };
 
 // Class representing Post
@@ -86,17 +96,22 @@ private:
     std::vector<FanInteraction*> fanInteractions; // 1-to-many relationship with FanInteraction
 
 public:
-    Post(std::string contentType, std::string postDate, int likes, int comments, int shares);
+    Post(std::string contentType, std::string postDate, int likes, int comments, int shares) {
+        this->contentType = contentType;
+        this->postDate = postDate;
+        this->likes = likes;
+        this->comments = comments;
+        this->shares = shares;
+    }
 
-    // Methods (stubs)
     void createPost();
     int getEngagement();
     void calculateReach();
 
-    // Getters and Setters
-    void addFanInteraction(FanInteraction* interaction);
-    std::string getContentType() const;
-    std::string getPostDate() const;
+    // Setters and Getters
+    void addFanInteraction(FanInteraction* interaction) { fanInteractions.push_back(interaction); }
+    std::string getContentType() const { return contentType; }
+    std::string getPostDate() const { return postDate; }
 };
 
 // Class representing Follower
@@ -107,16 +122,19 @@ private:
     int engagementLevel;
 
 public:
-    Follower(std::string name, std::string followerType, int engagementLevel);
+    Follower(std::string name, std::string followerType, int engagementLevel) {
+        this->name = name;
+        this->followerType = followerType;
+        this->engagementLevel = engagementLevel;
+    }
 
-    // Methods (stubs)
     void interactWithPost(Post* post);
     void increaseEngagement();
 
-    // Getters and Setters
-    std::string getName() const;
-    std::string getFollowerType() const;
-    int getEngagementLevel() const;
+    // Setters and Getters
+    std::string getName() const { return name; }
+    std::string getFollowerType() const { return followerType; }
+    int getEngagementLevel() const { return engagementLevel; }
 };
 
 // Class representing Sponsorship
@@ -128,15 +146,19 @@ private:
     std::string terms;
 
 public:
-    Sponsorship(std::string brandName, double contractValue, int duration, std::string terms);
+    Sponsorship(std::string brandName, double contractValue, int duration, std::string terms) {
+        this->brandName = brandName;
+        this->contractValue = contractValue;
+        this->duration = duration;
+        this->terms = terms;
+    }
 
-    // Methods (stubs)
     void signContract();
     void renewContract();
 
-    // Getters and Setters
-    std::string getBrandName() const;
-    double getContractValue() const;
+    // Setters and Getters
+    std::string getBrandName() const { return brandName; }
+    double getContractValue() const { return contractValue; }
 };
 
 // Class representing WeatherEvent
@@ -148,15 +170,19 @@ private:
     std::string impactOnGameplay;
 
 public:
-    WeatherEvent(std::string weatherType, int severity, int duration, std::string impactOnGameplay);
+    WeatherEvent(std::string weatherType, int severity, int duration, std::string impactOnGameplay) {
+        this->weatherType = weatherType;
+        this->severity = severity;
+        this->duration = duration;
+        this->impactOnGameplay = impactOnGameplay;
+    }
 
-    // Methods (stubs)
     void generateWeatherEvent();
     void applyImpactToGame(Game* game);
 
-    // Getters and Setters
-    std::string getWeatherType() const;
-    int getSeverity() const;
+    // Setters and Getters
+    std::string getWeatherType() const { return weatherType; }
+    int getSeverity() const { return severity; }
 };
 
 // Class representing Game
@@ -168,17 +194,20 @@ private:
     std::pair<int, int> score; // {team1_score, team2_score}
 
 public:
-    Game(std::string gameTime, WeatherEvent* weather, std::vector<Team*> teamsInvolved);
+    Game(std::string gameTime, WeatherEvent* weather, std::vector<Team*> teamsInvolved) {
+        this->gameTime = gameTime;
+        this->weather = weather;
+        this->teamsInvolved = teamsInvolved;
+    }
 
-    // Methods (stubs)
     void startGame();
     void pauseForWeather();
     void simulateWeatherImpact();
-    void addTeam(Team* team);
+    void addTeam(Team* team) { teamsInvolved.push_back(team); }
 
-    // Getters and Setters
-    std::string getGameTime() const;
-    std::pair<int, int> getScore() const;
+    // Setters and Getters
+    std::string getGameTime() const { return gameTime; }
+    std::pair<int, int> getScore() const { return score; }
 };
 
 // Class representing Team
@@ -189,15 +218,17 @@ private:
     std::vector<Athlete*> players; // 1-to-many relationship with Athlete
 
 public:
-    Team(std::string teamName, std::vector<std::string> teamStats);
+    Team(std::string teamName, std::vector<std::string> teamStats) {
+        this->teamName = teamName;
+        this->teamStats = teamStats;
+    }
 
-    // Methods (stubs)
     void setLineup();
     void strategizeForWeather(WeatherEvent* weatherEvent);
-    void addPlayer(Athlete* player);
+    void addPlayer(Athlete* player) { players.push_back(player); }
 
-    // Getters and Setters
-    std::string getTeamName() const;
+    // Setters and Getters
+    std::string getTeamName() const { return teamName; }
 };
 
 // Class representing Stadium
@@ -208,13 +239,16 @@ private:
     std::string fieldCondition;
 
 public:
-    Stadium(std::string stadiumName, std::string location, std::string fieldCondition);
+    Stadium(std::string stadiumName, std::string location, std::string fieldCondition) {
+        this->stadiumName = stadiumName;
+        this->location = location;
+        this->fieldCondition = fieldCondition;
+    }
 
-    // Methods (stubs)
     void updateFieldCondition();
 
-    // Getters and Setters
-    std::string getStadiumName() const;
+    // Setters and Getters
+    std::string getStadiumName() const { return stadiumName; }
 };
 
 // Class representing FanInteraction
@@ -225,13 +259,16 @@ private:
     std::string message;
 
 public:
-    FanInteraction(std::string interactionType, std::string fanName, std::string message);
+    FanInteraction(std::string interactionType, std::string fanName, std::string message) {
+        this->interactionType = interactionType;
+        this->fanName = fanName;
+        this->message = message;
+    }
 
-    // Methods (stubs)
     void interact();
 
-    // Getters and Setters
-    std::string getFanName() const;
+    // Setters and Getters
+    std::string getFanName() const { return fanName; }
 };
 
 // Class representing EventImpact
@@ -242,13 +279,16 @@ private:
     Athlete* athleteImpact;
 
 public:
-    EventImpact(std::string impactType, int severityLevel, Athlete* athleteImpact);
+    EventImpact(std::string impactType, int severityLevel, Athlete* athleteImpact) {
+        this->impactType = impactType;
+        this->severityLevel = severityLevel;
+        this->athleteImpact = athleteImpact;
+    }
 
-    // Methods (stubs)
     void applyImpact();
 
-    // Getters and Setters
-    std::string getImpactType() const;
+    // Setters and Getters
+    std::string getImpactType() const { return impactType; }
 };
 
 // Class representing Reputation
@@ -258,14 +298,16 @@ private:
     int fansSupport;
 
 public:
-    Reputation(int reputationScore, int fansSupport);
+    Reputation(int reputationScore, int fansSupport) {
+        this->reputationScore = reputationScore;
+        this->fansSupport = fansSupport;
+    }
 
-    // Methods (stubs)
     void increaseReputation();
     void decreaseReputation();
 
-    // Getters and Setters
-    int getReputationScore() const;
+    // Setters and Getters
+    int getReputationScore() const { return reputationScore; }
 };
 
 // Class representing WeatherEffect
@@ -276,14 +318,18 @@ private:
     std::string weatherType;
 
 public:
-    WeatherEffect(int staminaImpact, std::string fieldImpact, std::string weatherType);
+    WeatherEffect(int staminaImpact, std::string fieldImpact, std::string weatherType) {
+        this->staminaImpact = staminaImpact;
+        this->fieldImpact = fieldImpact;
+        this->weatherType = weatherType;
+    }
 
-    // Methods (stubs)
     void applyWeatherEffect();
 
-    // Getters and Setters
-    int getStaminaImpact() const;
-    std::string getFieldImpact() const;
+    // Setters and Getters
+    int getStaminaImpact() const { return staminaImpact; }
+    std::string getFieldImpact() const { return fieldImpact; }
 };
+
 
 #endif // GAME_OBJECTS_H
