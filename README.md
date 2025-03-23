@@ -12,16 +12,21 @@ Other Links:
 ## Information
 
 This is a completion of the Forage Electronic Arts software engineering job simulation relating to thier game Sims. This is equivillant to a junior software engineer at Electronic Arts and I will complete each task and goals to improve the game Sims.
-* Task 1: 
-* Task 2:
-* Task 3:
-* Task 4:
-* Task 5:  
-* Completed by 00/00/2025 by VictoriaRaven
+* Task 1: Feature Proposal
+* Task 2: UML Class diagrams of Task 1
+* Task 3: creating Header C++ file of Tasks 1 and 2
+* Task 4: modifying a file to bug fix it with improved data structure 
+* Completed by 3/23/2025 by VictoriaRaven
+* Time to complete all tasks (3/22/2025-3/23/2025) about a day or 24 hours to complete alongside with UMGC classes.
 
 ### What is on resume/linkedin:
-Electronic Arts Software Egnineering Job Simulation on Forage - Month 2025
- * type here
+Electronic Arts Software Engineering virtual experience program on Forage - March 2025
+ * Proposed a new feature for the EA Sports College Football and wrote a Feature
+   Proposal describing it to other stakeholders.
+ * Built a class diagram and created a header file in C++ with class definitions
+   for each object.
+ * Patched a bugfix and optimized the EA Sports College Football codebase by
+   implementing an improved data structure.
 
 ## Authors
 
