@@ -1,6 +1,11 @@
 #include <string>
 #include<iostream>
 #include <utility>
+#include <climits> // for INT_MAX
+
+//Modifed the remove section only.
+//I did not change array to vectors as I wasn't sure I was allowed to do it
+//I may also resubmit the vector version as well.
 
 class Item {
 private:
@@ -43,7 +48,7 @@ public:
 
 class Inventory {
 private:
-    Item* items[20];
+    Item* items[20];  // Kept it as array as I wasn't sure I was allowed to modify this
     float total_money;
     int item_count;
 
@@ -107,6 +112,19 @@ public:
             std::cout << "\nItems sold";
             std::cout << "\nMoney received: " << money_earned;
             total_money += money_earned;
+
+            //Modifed and Updated code here:
+            // if the quantity reaches zero, delete the item and shift others
+            if (item->get_quantity() == 0) {
+                delete item; // free the memory of item
+                // Shift items in array to fill the empty spaces (shifted spaces)
+                for (int i = item_index; i < item_count - 1; i++) {
+                    items[i] = items[i + 1];
+                }
+                items[item_count - 1] = nullptr; // set last item to nullptr
+                item_count--; // decrease item count
+                std::cout << "\nItem removed from inventory as quantity is zero.";
+            }
         }
         else {
             std::cout << "\nCannot sell more items than you have.";
